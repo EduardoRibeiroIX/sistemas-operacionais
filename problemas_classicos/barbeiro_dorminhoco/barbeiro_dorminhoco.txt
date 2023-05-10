@@ -1,0 +1,9 @@
+O código implementa uma simulação de uma barbearia com um barbeiro e um número limitado de cadeiras para os clientes aguardarem atendimento. O programa utiliza semáforos para sincronizar a comunicação entre as threads e garantir que o barbeiro atenda um cliente de cada vez e que o número máximo de clientes que podem aguardar sentados não seja excedido.
+
+O programa cria três semáforos: sem_cadeiras, que representa o número de cadeiras disponíveis na barbearia; sem_barbeiro, que representa o estado do barbeiro, se ele está dormindo ou atendendo um cliente; e sem_cliente, que representa a chegada de um novo cliente na barbearia.
+
+A thread do barbeiro é criada primeiro. Ela entra em um loop infinito em que espera um cliente chegar (sem_wait(&sem_cliente)), bloqueia uma das cadeiras disponíveis (sem_wait(&sem_cadeiras)) e decrementa a quantidade de clientes esperando. Em seguida, o barbeiro atende o cliente por um tempo aleatório (sleep(rand() % 3)). Após o atendimento, o barbeiro libera a cadeira ocupada (sem_post(&sem_cadeiras)) e volta a dormir (sem_post(&sem_barbeiro)).
+
+Em seguida, dez threads de clientes são criadas. Cada thread representa a chegada de um cliente na barbearia. Após um tempo aleatório de espera (sleep(rand() % 5)), o cliente tenta sentar em uma cadeira livre (sem_wait(&sem_cadeiras)). Se houver cadeiras disponíveis, o cliente incrementa o número de clientes esperando, informa o barbeiro que está aguardando (sem_post(&sem_cliente)), libera a cadeira ocupada (sem_post(&sem_cadeiras)) e espera ser atendido pelo barbeiro (sem_wait(&sem_barbeiro)). Se não houver cadeiras disponíveis, o cliente informa que a barbearia está cheia e sai (sem_post(&sem_cadeiras)).
+
+Finalmente, o programa espera todas as threads dos clientes terminarem (pthread_join()) e cancela a thread do barbeiro (pthread_cancel()). Os semáforos são destruídos (sem_destroy()) e o programa termina.
