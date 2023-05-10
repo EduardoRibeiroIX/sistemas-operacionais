@@ -1,0 +1,15 @@
+O código acima tem como objetivo comparar o desempenho do uso de primitivas fork e threads para a realização de uma determinada tarefa. A tarefa escolhida é a ordenação de um vetor de números inteiros em ordem crescente.
+
+Para isso, o código começa definindo as bibliotecas necessárias e as variáveis globais, que são o tamanho do vetor a ser ordenado, o número de repetições da operação e as variáveis de tempo para cada método.
+
+Em seguida, a função main() começa com a leitura dos parâmetros do programa, que são o tamanho do vetor a ser ordenado e o número de repetições. Depois, é alocado o espaço de memória para o vetor e é gerado um vetor aleatório utilizando a função rand().
+
+Na sequência, é realizado um laço de repetição para executar a ordenação do vetor com a utilização de primitivas fork e threads. Dentro do laço, é feita a chamada da função gettimeofday() para iniciar a contagem do tempo e é realizado o método escolhido para ordenar o vetor.
+
+Para a ordenação utilizando primitivas fork, é criado um processo filho que utiliza a função qsort() para ordenar o vetor. O processo pai espera pela finalização do processo filho utilizando a função wait().
+
+Já para a ordenação utilizando threads, são criadas duas threads que dividem o vetor em duas partes para ordená-las separadamente. As duas threads são sincronizadas com a função pthread_join().
+
+Por fim, é realizada a contagem do tempo de execução utilizando novamente a função gettimeofday(), e é calculada a média de tempo para cada método.
+
+Por fim, é realizada a impressão dos resultados na tela.
