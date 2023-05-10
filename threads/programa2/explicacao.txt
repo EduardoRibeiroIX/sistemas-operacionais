@@ -1,0 +1,9 @@
+O programa começa declarando duas variáveis do tipo pid_t para armazenar os PIDs dos processos filhos que serão criados: pid1 e pid2. Em seguida, o programa chama a função fork para criar o primeiro processo filho.
+
+O programa verifica o valor de retorno do fork. Se o valor for negativo, significa que ocorreu um erro na criação do processo filho 1. Nesse caso, o programa exibe uma mensagem de erro e termina com um código de erro. Se o valor for 0, significa que o processo atual é o processo filho 1, então o programa exibe uma mensagem informando isso e termina com sucesso. Caso contrário, o processo atual é o processo pai e o programa cria um segundo processo filho dentro dele.
+
+O programa repete a lógica acima para criar o segundo processo filho, verificando o valor de retorno do fork em cada caso.
+
+Ao final, o programa exibe mensagens indicando qual processo está sendo executado e qual é o seu PID. O processo pai também exibe os PIDs dos seus filhos.
+
+Com isso, o programa demonstra a criação de uma hierarquia de processos usando o comando fork, com um processo pai e dois processos filhos.
