@@ -1,0 +1,15 @@
+    As bibliotecas stdio.h, stdlib.h, unistd.h e sys/wait.h são incluídas no início do código.
+
+    A variável var é declarada e inicializada com o valor 1.
+
+    O valor atual da variável é impresso na tela.
+
+    É criado um novo processo usando a função fork(). O retorno da função fork() é armazenado na variável pid.
+
+    Se pid for igual a 0, o código dentro do bloco if é executado. Isso significa que o processo atual é o processo filho. O valor da variável é alterado para 5 e é impresso na tela. Em seguida, o processo filho é encerrado usando a função exit().
+
+    Se pid for maior que 0, o código dentro do bloco else if é executado. Isso significa que o processo atual é o processo pai. A função waitpid() é usada para esperar o processo filho terminar. Em seguida, o valor atual da variável é impresso na tela.
+
+    Se pid for menor que 0, um erro ocorreu ao criar o processo filho. A mensagem de erro é impressa na tela e o programa é encerrado usando a função exit().
+
+Os resultados obtidos podem variar dependendo do sistema operacional e da implementação específica do fork(). No entanto, em geral, o valor da variável impresso antes do fork() deve ser 1, o valor impresso pelo processo filho deve ser 5 e o valor impresso pelo processo pai após o filho ter alterado a variável deve ser 1. Isso ocorre porque, quando um processo é criado usando a função fork(), uma cópia do espaço de endereçamento do processo pai é criada para o processo filho. Isso significa que as variáveis são copiadas e cada processo tem sua própria cópia da variável. Quando o processo filho altera o valor da variável, ele está alterando sua própria cópia da variável, não a cópia do processo pai. Portanto, quando o processo pai imprime o valor da variável após o filho ter alterado, ele ainda vê o valor
