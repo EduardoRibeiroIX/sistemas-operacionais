@@ -1,0 +1,9 @@
+O código acima ordena um vetor de 100 posições em processos e threads utilizando a função de ordenação bubble sort. O programa é iniciado com a criação de um vetor de 100 posições preenchido aleatoriamente. Em seguida, o vetor é exibido na tela antes da ordenação.
+
+O processo pai é criado e realiza a divisão do vetor em duas partes iguais para serem ordenadas por dois filhos criados por ele. Cada filho recebe uma parte do vetor, realiza a ordenação e depois envia de volta para o pai através de uma mensagem do tipo PIPE.
+
+Após a recepção dos dados dos filhos, o processo pai faz a junção dos dois vetores ordenados e em seguida exibe o vetor ordenado completo na tela.
+
+No final, o programa libera os recursos utilizados para a execução das threads e dos processos.
+
+Os processos filhos e o processo pai utilizam o mesmo vetor na memória, pois todos os processos compartilham a mesma memória do processo pai (exceto em casos de regiões de memória protegidas). Porém, como cada processo filho recebe apenas uma parte do vetor, eles não trabalham na mesma posição de memória e não ocorrem conflitos de acesso.
