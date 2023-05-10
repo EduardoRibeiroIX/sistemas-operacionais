@@ -1,0 +1,17 @@
+    As bibliotecas stdio.h, stdlib.h, pthread.h e semaphore.h são incluídas no início do código.
+
+    Três semáforos são declarados como variáveis globais: semA, semB e semC.
+
+    As três funções que serão executadas pelas threads são definidas: threadA, threadB e threadC. Cada uma dessas funções usa um loop infinito para escrever na tela, com base em um semáforo específico.
+
+    No main(), os semáforos são inicializados usando a função sem_init(), com os valores iniciais de 1, 0 e 0 para semA, semB e semC, respectivamente.
+
+    Três variáveis do tipo pthread_t são declaradas: tidA, tidB e tidC. Essas variáveis serão usadas para armazenar os IDs das threads criadas.
+
+    As três threads são criadas usando a função pthread_create(). Cada thread é associada a uma função específica (threadA, threadB ou threadC) e não recebe argumentos.
+
+    As três threads são aguardadas usando a função pthread_join().
+
+    Os semáforos são destruídos usando a função sem_destroy().
+
+    O programa retorna 0, indicando que não ocorreu
