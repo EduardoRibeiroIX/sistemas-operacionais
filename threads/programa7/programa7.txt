@@ -1,0 +1,5 @@
+O programa cria MAX_PROCESSES processos e MAX_THREADS threads e verifica se o sistema operacional consegue lidar com essa carga de trabalho. No teste de criação de processos, o programa verifica se a chamada fork() retornou um valor negativo, indicando que não foi possível criar um novo processo, e no teste de criação de threads, o programa verifica se a chamada pthread_create() retornou um valor diferente de zero, indicando que não foi possível criar uma nova thread.
+
+Após criar os processos e threads, o programa espera pelas threads criadas utilizando a função pthread_join(). Por fim, o programa retorna 0 para indicar que a execução foi concluída com sucesso.
+
+É importante ressaltar que os valores de MAX_PROCESSES e MAX_THREADS podem ser ajustados de acordo com a capacidade do sistema e do hardware utilizado, e que é recomendado executar o programa com cautela para evitar problemas de escalabilidade. Além disso, os resultados obtidos podem variar dependendo do ambiente de execução e das configurações do sistema operacional.
