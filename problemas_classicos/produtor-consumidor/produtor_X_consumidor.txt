@@ -1,0 +1,11 @@
+O código acima implementa o problema clássico do Produtor x Consumidor em C utilizando threads, mutexes e variáveis de condição.
+
+A função main cria duas threads, uma para o produtor e outra para o consumidor, utilizando a função pthread_create. Em seguida, espera as threads terminarem usando a função pthread_join.
+
+A função producer é executada pela thread do produtor. Ela produz NUM_ITEMS itens aleatórios e adiciona cada um deles ao buffer compartilhado, seguindo o protocolo do Produtor x Consumidor. O acesso ao buffer é protegido pelo mutex mutex, que garante que apenas um produtor ou consumidor acesse o buffer de cada vez. A variável de condição cond_prod é utilizada para avisar os consumidores quando há um novo item no buffer. Se o buffer estiver cheio, o produtor aguarda em cond_prod até que haja espaço no buffer.
+
+A função consumer é executada pela thread do consumidor. Ela consome NUM_ITEMS itens do buffer compartilhado, seguindo o protocolo do Produtor x Consumidor. O acesso ao buffer também é protegido pelo mutex mutex. A variável de condição cond_cons é utilizada para avisar os produtores quando há espaço no buffer. Se o buffer estiver vazio, o consumidor aguarda em cond_cons até que haja um item no buffer.
+
+As variáveis globais buffer, in, out e num_items são utilizadas para representar o buffer compartilhado e controlar as posições de escrita e leitura do buffer, bem como o número de itens no buffer.
+
+Em resumo, o código acima implementa uma solução para o problema do Produtor x Consumidor que garante exclusão mútua e sincronização entre as threads produtoras e consumidoras usando mutexes e variáveis de condição.
