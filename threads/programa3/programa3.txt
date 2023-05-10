@@ -1,9 +1,17 @@
-O programa começa declarando duas variáveis do tipo pid_t para armazenar os PIDs dos processos filhos que serão criados: pid1 e pid2. Em seguida, o programa chama a função fork para criar o primeiro processo filho.
+    Declaração de variáveis: a primeira linha declara quatro variáveis do tipo pid_t, que são usadas para armazenar os IDs de processo (PID) do processo avô, pai, filho e novo pai.
 
-O programa verifica o valor de retorno do fork. Se o valor for negativo, significa que ocorreu um erro na criação do processo filho 1. Nesse caso, o programa exibe uma mensagem de erro e termina com um código de erro. Se o valor for 0, significa que o processo atual é o processo filho 1, então o programa exibe uma mensagem informando isso e termina com sucesso. Caso contrário, o processo atual é o processo pai e o programa cria um segundo processo filho dentro dele.
+    Atribuição do PID do processo avô: a segunda linha atribui o PID do processo avô à variável pid_avo, usando a função getpid().
 
-O programa repete a lógica acima para criar o segundo processo filho, verificando o valor de retorno do fork em cada caso.
+    Criação do processo pai: a terceira linha cria um novo processo usando o comando fork(). O processo pai é criado como uma cópia exata do processo avô, com exceção do seu PID e do seu valor de retorno.
 
-Ao final, o programa exibe mensagens indicando qual processo está sendo executado e qual é o seu PID. O processo pai também exibe os PIDs dos seus filhos.
+    Verificação do valor de retorno do fork(): a quarta linha verifica se o valor de retorno do fork() é -1. Se for, significa que ocorreu um erro na criação do processo pai, e o programa exibe uma mensagem de erro e termina com um código de erro usando a função exit().
 
-Com isso, o programa demonstra a criação de uma hierarquia de processos usando o comando fork, com um processo pai e dois processos filhos.
+    Código do processo filho: se o valor de retorno do fork() for 0, significa que o processo atual é o processo filho. O programa exibe algumas mensagens indicando que este é o processo filho e quem é seu pai (usando a função getppid()). Em seguida, o processo filho espera por 10 segundos (usando a função sleep()) antes de exibir uma mensagem indicando que o processo pai será eliminado.
+
+    Código do processo pai: se o valor de retorno do fork() for positivo e diferente de zero, significa que o processo atual é o processo pai. O programa cria um novo processo filho na sexta linha usando o mesmo comando fork(). A sétima linha verifica se ocorreu um erro na criação do processo filho.
+
+    Código do segundo processo filho: se o valor de retorno do segundo fork() for 0, significa que este é o segundo processo filho. O programa exibe algumas mensagens indicando que este é o segundo processo filho e quem é seu pai (usando a função getppid()). Em seguida, o processo filho espera por 20 segundos antes de exibir uma mensagem indicando que o processo pai será eliminado.
+
+    Código do processo pai novamente: se o valor de retorno do segundo fork() for positivo e diferente de zero, significa que este é o processo pai novamente. O programa exibe algumas mensagens indicando que este é o processo pai e quem é seu filho (usando o PID armazenado na variável pid_filho). O processo pai espera por 5 segundos antes de definir o PID do processo avô como o novo pai do processo filho e eliminar o processo pai usando a função kill().
+
+    Exibição do novo pai: depois de eliminar o processo pai, o programa exibe uma mensagem indicando que o novo pai do processo filho é o processo avô (usando o PID armazenado na variável pid_avo) e o PID atual do pai do processo filho (usando a função getppid()). O processo pai espera pelo término do processo filho usando a função wait(), e em seguida termina com um código de sucesso usando a função exit().
