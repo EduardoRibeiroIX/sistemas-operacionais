@@ -1,5 +1,3 @@
-Claro, vou explicar o que esse código faz!
-
 Este programa em C usa o comando fork para criar três processos diferentes: um avô, um pai e um filho. O objetivo é demonstrar como funciona a hierarquia de processos criados pelo fork.
 
 O programa começa importando três bibliotecas: stdio.h, stdlib.h e unistd.h. Em seguida, declara três variáveis do tipo pid_t para armazenar os PIDs (identificadores de processo) dos processos que serão criados: pid_filho, pid_pai e pid_avo.
